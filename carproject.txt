@@ -1,0 +1,14 @@
+Car Project:
+
+Functionality:
+	Track gas mileage
+		Enter in current miles traveled
+		Type in total gas price every time you fill up tank
+		Type in the gallons
+		Does the math on how many miles per gallon
+	Major Statistics
+		Gives you an overall map of where you have filled up your car (which gas stations)
+		Gives an overview of
+			Average miles driven before filling up
+			Average miles per gallon
+			Average cost per gallon

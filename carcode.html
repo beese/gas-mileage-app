@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>My Page</title> 
+		<meta name="viewport" content="width=device-width, initial-scale=1"> 
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<script src="script.js"></script> <!-- we have to create this file-->
+		<style>
+			.back {
+  				background: linear-gradient(#77dcf2, #a0e7db, #c9ead2, #FFFFFF);
+			}
+		</style>
+	</head>
+	<body>
+		<div data-role="page" id="home" class="back">
+			<div data-role="header" data-theme="b">
+				<h1>On the Road</h1>
+			</div><!-- /header -->
+			<div data-role="content">
+				<h2>Welcome to On the Road!  You can use On the Road to track your gas mileage and see your statistics on driving/gas!</h2>
+				<!--we put what we want the user to see here-->
+			</div><!-- /content -->
+			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home" class="ui-btn-active ui-state-persist">Home</a></li>
+						<li><a href="#enterinfo">Fill Up</a></li>
+						<li><a href="#stats">Stats</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div><!-- /footer -->
+		</div><!-- /page -->
+		<div data-role="page" id="enterinfo" class="back">
+			<div data-role="header" data-theme="b">
+				<h1>Log Miles</h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home">Home</a></li>
+						<li><a href="#enterinfo" class="ui-btn-active ui-state-persist">Fill Up</a></li>
+						<li><a href="#stats">Stats</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div>
+		</div>
+		<div data-role="page" id="stats" class="back">
+			<div data-role="header" data-theme="b">
+				<h1>Statistics</h1>
+			</div>
+			<div data-role="content">
+			</div>
+			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#home">Home</a></li>
+						<li><a href="#enterinfo">Fill Up</a></li>
+						<li><a href="#stats" class="ui-btn-active ui-state-persist">Stats</a></li>
+					</ul>
+				</div><!-- /navbar -->
+			</div>
+		</div>
+	</body>
+</html>
