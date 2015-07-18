@@ -16,16 +16,42 @@
 				position: center;
 				width: 50%;
 			}
+			#topimg {
+			    text-align: center;
+			    /*margin: 1em;*/
+			    margin: 0;
+			    /*border: 3px solid black;*/
+			    /*border-radius: 5px;*/
+			}
+			#topimg img {
+			    display: inline-block;
+			    max-width: 250px; /*resolution of the img*/
+			    width: 100%;
+			    margin: 0;
+			    /*margin: 3em auto;*/
+			}
+
+			#topimg h2 {
+				font-size: 120%;
+			}
+
+			#topimg h3 {
+				font-size: 90%;
+			}
 		</style>
 	</head>
 	<body>
 		<div data-role="page" id="home" class="back">
 			<div data-role="header" data-theme="b">
-				<h1>On the Road</h1>
+				<h1>Home</h1>
 			</div><!-- /header -->
-			<div data-role="content">
-				<img src="logo.jpg" id="logo">
-				<h2>Welcome to On the Road!  You can use On the Road to track your gas mileage and see your statistics on driving/gas!</h2>
+			<div data-role="content" id = "content">
+				<figure id="topimg">
+					<img src="logo.png" id="logo" alt="logo">
+					<h2>Welcome to On the Road!</h2>
+					<h3>You can use On the Road to track your gas mileage and see your statistics on driving/gas!  Just click Fill Up to get started!</h3>
+				</figure>
+				
 				<!--we put what we want the user to see here-->
 			</div><!-- /content -->
 			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
@@ -43,6 +69,13 @@
 				<h1>Fill Up</h1>
 			</div>
 			<div data-role="content">
+				<label for="basic">Miles Traveled:</label>
+				<input type="text" name="name" id="basic" value="" data-mini="true"/>
+				<label for="basic">Gallons of Gas:</label>
+				<input type="text" name="name" id="basic" value="" data-mini="true"  />
+				<label for="basic">Gas Cost:</label>
+				<input type="text" name="name" id="basic" value="" data-mini="true" placeholder="example: 25.60" />
+				<input type="submit" value="Submit" data-theme="b"/>
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
 				<div data-role="navbar">
