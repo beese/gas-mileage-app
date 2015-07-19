@@ -14,6 +14,8 @@ if(typeof(Storage) !== "undefined") {
 		localStorage.setItem("miles", zero);
 		localStorage.setItem("gallons", zero);
 		localStorage.setItem("cost", zero);
+		localStorage.setItem("lastmiles", zero);
+		localStorage.setItem("lastgallons", zero);
 
 		refresh();
 
@@ -47,8 +49,8 @@ if(typeof(Storage) !== "undefined") {
 			//setting values
 			document.getElementById("totalNum").innerHTML=localStorage.getItem("total");
 			document.getElementById("totalMiles").innerHTML=localStorage.getItem("miles");
-			document.getElementById("totalGallons").innerHTML=localStorage.getItem("gallons");
-			document.getElementById("totalCost").innerHTML=localStorage.getItem("cost");
+			//document.getElementById("totalGallons").innerHTML=localStorage.getItem("gallons");
+			//document.getElementById("totalCost").innerHTML=localStorage.getItem("cost");
 			
 			//hiding error message
 			document.getElementById("info").style.display = "none";
@@ -57,16 +59,13 @@ if(typeof(Storage) !== "undefined") {
 			//showing the total
 			document.getElementById("totals").style.display = "unset";
 			document.getElementById("totals").style.visibility = "visible";
+			
+			calculate();
 
+			document.getElementById("averages").style.display = "unset";
+			document.getElementById("averages").style.visibility = "visible";
 			document.getElementById("resetbutton").style.display = "unset";
-			document.getElementById("resetbutton").style.visibility = "visible";
-
-			if(Number(localStorage.getItem("total")) > 1) {
-				calculate();
-				document.getElementById("averages").style.display = "unset";
-				document.getElementById("averages").style.visibility = "visible";
-				
-			}
+			document.getElementById("resetbutton").style.visibility = "visible";		
 		}
     };
 
@@ -85,6 +84,9 @@ if(typeof(Storage) !== "undefined") {
     	var avgMPG = Number(localStorage.getItem("miles")) / Number(localStorage.getItem("gallons"));
     	document.getElementById("mpg").innerHTML = parseFloat(avgMPG).toFixed(2);
 
+    	var lastf = Number(localStorage.getItem("lastmiles")) / Number(localStorage.getItem("lastgallons"));
+    	document.getElementById("last").innerHTML = parseFloat(lastf.toFixed(2));
+
 
     };
 
@@ -97,7 +99,8 @@ if(typeof(Storage) !== "undefined") {
 			var gallons = $("#gallons").val();
 			var cost = $("#cost").val();
 
-			
+			localStorage.setItem("lastmiles", miles);
+			localStorage.setItem("lastgallons", gallons);
 
 			var tMiles = Number(localStorage.getItem("miles"));
 			tMiles = tMiles + Number(miles);
@@ -113,7 +116,7 @@ if(typeof(Storage) !== "undefined") {
 
 			var tCost = Number(localStorage.getItem("cost"));
 			tCost = tCost + Number(cost);
-			localStorage.setItem("cost", tCost);
+			localStorage.setItem("cost", tCost); 
 			
 			refresh();
 			
@@ -122,7 +125,7 @@ if(typeof(Storage) !== "undefined") {
 			document.getElementById("cost").value = "";
 			
 			window.location.href="#stats";
-		})
+		});
 	});
 
 	// Store
