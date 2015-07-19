@@ -91,7 +91,13 @@
 			<div data-role="header" data-theme="b">
 				<h1>Statistics</h1>
 			</div>
-			<div data-role="content">
+			<div data-role="content" id="#content">
+				<p>Total number of logs: <span id="totalNum"></span></p>
+				<p>Total number of miles driven: <span id="totalMiles"></span></p>
+				<p>Total cost of gas: <span id="totalCost"></span></p>
+				<p>Total gallons filled: <span id="totalGallons"></span></p>
+
+				<input type="reset" value="Reset" data-theme="b" onclick="reset()" />
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
 				<div data-role="navbar">
