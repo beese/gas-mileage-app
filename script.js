@@ -35,6 +35,10 @@ if(typeof(Storage) !== "undefined") {
 
 			document.getElementById("totals").style.display = "none";
 			document.getElementById("totals").style.visibility = "hidden";
+
+			document.getElementById("resetbutton").style.display = "none";
+			document.getElementById("resetbutton").style.visibility = "hidden";
+
 			
 		}
 
@@ -54,6 +58,9 @@ if(typeof(Storage) !== "undefined") {
 			document.getElementById("totals").style.display = "unset";
 			document.getElementById("totals").style.visibility = "visible";
 
+			document.getElementById("resetbutton").style.display = "unset";
+			document.getElementById("resetbutton").style.visibility = "visible";
+
 			if(Number(localStorage.getItem("total")) > 1) {
 				calculate();
 				document.getElementById("averages").style.display = "unset";
@@ -67,16 +74,16 @@ if(typeof(Storage) !== "undefined") {
     	//calculate average miles driven
 
     	var avgM = Number(localStorage.getItem("miles")) / Number(localStorage.getItem("total"));
-    	document.getElementById("avgMiles").innerHTML = avgM;
+    	document.getElementById("avgMiles").innerHTML = parseFloat(avgM).toFixed(2);
 
-    	var avgC = Number(localStorage.getItem("cost")) / Number(localStorage.getItem("total"));
-    	document.getElementById("avgCost").innerHTML = avgC;
+    	var avgC = Number(localStorage.getItem("cost")) / Number(localStorage.getItem("gallons"));
+    	document.getElementById("avgCost").innerHTML = parseFloat(avgC).toFixed(2);
 
-    	var avgG = Number(localStorage.getItem("gallons")) / Number(localStorage.getItem("total"));
-    	document.getElementById("avgGallons").innerHTML = avgG;
+    	// var avgG = Number(localStorage.getItem("gallons")) / Number(localStorage.getItem("total"));
+    	// document.getElementById("avgGallons").innerHTML = parseFloat(avgG).toFixed(2);
 
     	var avgMPG = Number(localStorage.getItem("miles")) / Number(localStorage.getItem("gallons"));
-    	document.getElementById("mpg").innerHTML = avgMPG;
+    	document.getElementById("mpg").innerHTML = parseFloat(avgMPG).toFixed(2);
 
 
     };

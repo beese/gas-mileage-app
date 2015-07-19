@@ -16,14 +16,14 @@
 				position: center;
 				width: 50%;
 			}
-			#topimg {
+			.topimg {
 			    text-align: center;
 			    /*margin: 1em;*/
 			    margin: 0;
 			    /*border: 3px solid black;*/
 			    /*border-radius: 5px;*/
 			}
-			#topimg img {
+			.topimg img {
 			    display: inline-block;
 			    max-width: 250px; /*resolution of the img*/
 			    width: 100%;
@@ -31,12 +31,16 @@
 			    /*margin: 3em auto;*/
 			}
 
-			#topimg h2 {
+			.topimg h2 {
 				font-size: 120%;
 			}
 
-			#topimg h3 {
+			.topimg h3 {
 				font-size: 90%;
+			}
+
+			.topimg p {
+				font-size: 50%;
 			}
 		</style>
 	</head>
@@ -46,10 +50,11 @@
 				<h1>Home</h1>
 			</div><!-- /header -->
 			<div data-role="content" id = "content">
-				<figure id="topimg">
+				<figure class="topimg">
 					<img src="logo.png" id="logo" alt="logo">
 					<h2>Welcome to On the Road!</h2>
-					<h3>You can use On the Road to track your gas mileage and see your statistics on driving/gas!  Just click Fill Up to get started!</h3>
+					<h3>You can use On the Road to track your gas mileage and see your statistics on driving/gas!</h3>
+					<p>Created by <a href="http://www.kristinbeese.com">Kristin Beese</a></p>
 				</figure>
 				
 				<!--we put what we want the user to see here-->
@@ -95,24 +100,28 @@
 				
 				<div id="totals">
 					<h2>Totals</h2>
-					<p>Total number of logs: <span id="totalNum"></span></p>
-					<p>Total number of miles driven: <span id="totalMiles"></span></p>
-					<p>Total cost of gas: <span id="totalCost"></span></p>
-					<p>Total gallons filled: <span id="totalGallons"></span></p>
+					<p>Logs: <span id="totalNum"></span></p>
+					<p>Miles driven: <span id="totalMiles"></span></p>
+					<p>Cost of gas: $<span id="totalCost"></span></p>
+					<p>Gallons filled: <span id="totalGallons"></span></p>
 				</div>
 				<div id="averages">
 					<h2>Averages</h2>
-					<p>Average miles before filling up: <span id="avgMiles"></span></p>
-					<p>Average cost of gas: <span id="avgCost"></span></p>
-					<p>Average gallons filled: <span id="avgGallons"></span></p>
-					<p>Average Miles per Gallon: <span id="mpg"></span></p>
-				</div>
-				
-				<div id="info">
-					<h3>Oops! You haven't logged any information yet so we can't give you statistics!</h3>
+					<p>Miles per Gallon: <span id="mpg"></span></p>
+					<p>Cost per gallon: $<span id="avgCost"></span></p>
+					<!-- <p>Gallons filled: <span id="avgGallons"></span></p> -->
+					<p>Miles before filling up: <span id="avgMiles"></span></p>
 				</div>
 
-				<input type="reset" value="Reset" data-theme="b" onclick="reset()" />
+				<div id="info">
+					<figure class="topimg">
+						<h2>Oops!</h2> 
+						<h3>You haven't logged any information yet so we can't give you statistics!</h3>
+					</figure>
+				</div>
+				<div id="resetbutton">
+					<input type="reset" value="Reset" data-theme="b" onclick="reset()" />
+				</div>
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
 				<div data-role="navbar">
