@@ -15,21 +15,69 @@ if(typeof(Storage) !== "undefined") {
 		localStorage.setItem("gallons", zero);
 		localStorage.setItem("cost", zero);
 
-
-
 		refresh();
-
 
     }
 
 	var refresh = function() {
-		document.getElementById("totalNum").innerHTML=localStorage.getItem("total");
-		document.getElementById("totalMiles").innerHTML=localStorage.getItem("miles");
-		document.getElementById("totalGallons").innerHTML=localStorage.getItem("gallons");
-		document.getElementById("totalCost").innerHTML=localStorage.getItem("cost");
+		
+
+		if(Number(localStorage.getItem("total")) === 0) {
+
+			//showing the error message
+			document.getElementById("info").style.display = "unset";
+			document.getElementById("info").style.visibility = "visible";
+
+			//hiding the information
+			document.getElementById("averages").style.display = "none";
+			document.getElementById("averages").style.visibility = "hidden";
+			
+
+			document.getElementById("totals").style.display = "none";
+			document.getElementById("totals").style.visibility = "hidden";
+			
+		}
+
+		else {
+
+			//setting values
+			document.getElementById("totalNum").innerHTML=localStorage.getItem("total");
+			document.getElementById("totalMiles").innerHTML=localStorage.getItem("miles");
+			document.getElementById("totalGallons").innerHTML=localStorage.getItem("gallons");
+			document.getElementById("totalCost").innerHTML=localStorage.getItem("cost");
+			
+			//hiding error message
+			document.getElementById("info").style.display = "none";
+			document.getElementById("info").style.visibility = "hidden";
+			
+			//showing the total
+			document.getElementById("totals").style.display = "unset";
+			document.getElementById("totals").style.visibility = "visible";
+
+			if(Number(localStorage.getItem("total")) > 1) {
+				calculate();
+				document.getElementById("averages").style.display = "unset";
+				document.getElementById("averages").style.visibility = "visible";
+				
+			}
+		}
     };
 
     var calculate = function() {
+    	//calculate average miles driven
+
+    	var avgM = Number(localStorage.getItem("miles")) / Number(localStorage.getItem("total"));
+    	document.getElementById("avgMiles").innerHTML = avgM;
+
+    	var avgC = Number(localStorage.getItem("cost")) / Number(localStorage.getItem("total"));
+    	document.getElementById("avgCost").innerHTML = avgC;
+
+    	var avgG = Number(localStorage.getItem("gallons")) / Number(localStorage.getItem("total"));
+    	document.getElementById("avgGallons").innerHTML = avgG;
+
+    	var avgMPG = Number(localStorage.getItem("miles")) / Number(localStorage.getItem("gallons"));
+    	document.getElementById("mpg").innerHTML = avgMPG;
+
 
     };
 
@@ -42,7 +90,7 @@ if(typeof(Storage) !== "undefined") {
 			var gallons = $("#gallons").val();
 			var cost = $("#cost").val();
 
-			window.location.href="#stats";
+			
 
 			var tMiles = Number(localStorage.getItem("miles"));
 			tMiles = tMiles + Number(miles);
@@ -65,9 +113,8 @@ if(typeof(Storage) !== "undefined") {
 			document.getElementById("miles").value = "";
 			document.getElementById("gallons").value = "";
 			document.getElementById("cost").value = "";
-
-
 			
+			window.location.href="#stats";
 		})
 	});
 

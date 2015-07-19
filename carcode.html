@@ -92,10 +92,25 @@
 				<h1>Statistics</h1>
 			</div>
 			<div data-role="content" id="#content">
-				<p>Total number of logs: <span id="totalNum"></span></p>
-				<p>Total number of miles driven: <span id="totalMiles"></span></p>
-				<p>Total cost of gas: <span id="totalCost"></span></p>
-				<p>Total gallons filled: <span id="totalGallons"></span></p>
+				
+				<div id="totals">
+					<h2>Totals</h2>
+					<p>Total number of logs: <span id="totalNum"></span></p>
+					<p>Total number of miles driven: <span id="totalMiles"></span></p>
+					<p>Total cost of gas: <span id="totalCost"></span></p>
+					<p>Total gallons filled: <span id="totalGallons"></span></p>
+				</div>
+				<div id="averages">
+					<h2>Averages</h2>
+					<p>Average miles before filling up: <span id="avgMiles"></span></p>
+					<p>Average cost of gas: <span id="avgCost"></span></p>
+					<p>Average gallons filled: <span id="avgGallons"></span></p>
+					<p>Average Miles per Gallon: <span id="mpg"></span></p>
+				</div>
+				
+				<div id="info">
+					<h3>Oops! You haven't logged any information yet so we can't give you statistics!</h3>
+				</div>
 
 				<input type="reset" value="Reset" data-theme="b" onclick="reset()" />
 			</div>
