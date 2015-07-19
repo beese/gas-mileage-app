@@ -5,6 +5,7 @@ if(typeof(Storage) !== "undefined") {
     	reset();
     }
 
+
 	var reset = function() {
 		//reset values to zero
 
@@ -17,8 +18,60 @@ if(typeof(Storage) !== "undefined") {
 		localStorage.setItem("lastmiles", zero);
 		localStorage.setItem("lastgallons", zero);
 
+		invisible();
+
 		refresh();
 
+    }
+
+    var invisible = function() {
+    	document.getElementById("averages").style.display = "none";
+		document.getElementById("averages").style.visibility = "hidden";
+
+		document.getElementById("totals").style.display = "none";
+		document.getElementById("totals").style.visibility = "hidden";
+
+		document.getElementById("history").style.display = "none";
+		document.getElementById("history").style.visibility = "hidden";
+
+		document.getElementById("map").style.display = "none";
+		document.getElementById("map").style.visibility = "hidden";
+
+		$("#1").removeClass("ui-btn-active ui-state-persist");
+		$("#2").removeClass("ui-btn-active ui-state-persist");
+		$("#3").removeClass("ui-btn-active ui-state-persist");
+		$("#4").removeClass("ui-btn-active ui-state-persist");
+    }
+
+    var showAvg = function(){
+
+    	invisible();
+    	document.getElementById("averages").style.display = "unset";
+		document.getElementById("averages").style.visibility = "visible";
+		$("#1").addClass("ui-btn-active ui-state-persist");
+
+
+    }
+
+    var showTotal = function() {
+    	invisible();
+    	document.getElementById("totals").style.display = "unset";
+		document.getElementById("totals").style.visibility = "visible";
+		$("#2").addClass("ui-btn-active ui-state-persist");
+    }
+
+    var showLog = function() {
+    	invisible();
+    	document.getElementById("history").style.display = "unset";
+		document.getElementById("history").style.visibility = "visible";
+		$("#3").addClass("ui-btn-active ui-state-persist");
+    }
+
+    var showMap = function() {
+    	invisible();
+    	document.getElementById("map").style.display = "unset";
+		document.getElementById("map").style.visibility = "visible";
+		$("#4").addClass("ui-btn-active ui-state-persist");
     }
 
 	var refresh = function() {
@@ -38,8 +91,8 @@ if(typeof(Storage) !== "undefined") {
 			document.getElementById("totals").style.display = "none";
 			document.getElementById("totals").style.visibility = "hidden";
 
-			document.getElementById("resetbutton").style.display = "none";
-			document.getElementById("resetbutton").style.visibility = "hidden";
+			document.getElementById("infobar").style.display = "none";
+			document.getElementById("infobar").style.visibility = "hidden";
 
 			
 		}
@@ -57,15 +110,15 @@ if(typeof(Storage) !== "undefined") {
 			document.getElementById("info").style.visibility = "hidden";
 			
 			//showing the total
-			document.getElementById("totals").style.display = "unset";
-			document.getElementById("totals").style.visibility = "visible";
+			// document.getElementById("totals").style.display = "unset";
+			// document.getElementById("totals").style.visibility = "visible";
 			
 			calculate();
 
-			document.getElementById("averages").style.display = "unset";
-			document.getElementById("averages").style.visibility = "visible";
-			document.getElementById("resetbutton").style.display = "unset";
-			document.getElementById("resetbutton").style.visibility = "visible";		
+			// document.getElementById("averages").style.display = "unset";
+			// document.getElementById("averages").style.visibility = "visible";
+			document.getElementById("infobar").style.display = "unset";
+			document.getElementById("infobar").style.visibility = "visible";		
 		}
     };
 
@@ -78,8 +131,8 @@ if(typeof(Storage) !== "undefined") {
     	var avgC = Number(localStorage.getItem("cost")) / Number(localStorage.getItem("gallons"));
     	document.getElementById("avgCost").innerHTML = parseFloat(avgC).toFixed(2);
 
-    	// var avgG = Number(localStorage.getItem("gallons")) / Number(localStorage.getItem("total"));
-    	// document.getElementById("avgGallons").innerHTML = parseFloat(avgG).toFixed(2);
+    	var avgG = Number(localStorage.getItem("gallons")) / Number(localStorage.getItem("total"));
+    	document.getElementById("avgGallons").innerHTML = parseFloat(avgG).toFixed(2);
 
     	var avgMPG = Number(localStorage.getItem("miles")) / Number(localStorage.getItem("gallons"));
     	document.getElementById("mpg").innerHTML = parseFloat(avgMPG).toFixed(2);
@@ -93,6 +146,8 @@ if(typeof(Storage) !== "undefined") {
     $(document).ready(function(){
 
     	refresh();
+
+    	invisible();
     	
 		$("#submit").click(function(){
 			var miles = $("#miles").val();
@@ -125,6 +180,7 @@ if(typeof(Storage) !== "undefined") {
 			document.getElementById("cost").value = "";
 			
 			window.location.href="#stats";
+			showAvg();
 		});
 	});
 

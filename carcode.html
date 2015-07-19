@@ -3,6 +3,7 @@
 <html>
 	<head>
 		<title>My Page</title> 
+		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -46,7 +47,7 @@
 			}
 
 			#content {
-				background-color: rgba(255, 255, 255, .7);
+				background-color: rgba(255, 255, 255, .6);
 			}
 		</style>
 	</head>
@@ -85,7 +86,7 @@
 				<label for="gallons">Gallons of Gas:</label>
 				<input type="text" name="name" id="gallons" value="" data-mini="true"  />
 				<label for="cost">Gas Cost:</label>
-				<input type="text" name="name" id="cost" value="" data-mini="true" placeholder="example: 25.60" />
+				<input type="text" name="name" id="cost" value="" data-mini="true" placeholder="e.g. 25.60" />
 				<input type="submit" id = "submit" value="Submit" data-theme="b"/>
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
@@ -101,25 +102,58 @@
 		<div data-role="page" id="stats" class="back">
 			<div data-role="header" data-theme="b">
 				<h1>Statistics</h1>
+				<div data-role="navbar" id="infobar">
+				<ul>
+					<li><a href="#averages" id="1" onclick="showAvg()">Avgs</a></li>
+					<li><a href="#totals" id="2" onclick="showTotal()">Totals</a></li>
+					<li><a href="#history" id="3" onclick="showLog()">Log</a></li>
+					<li><a href="#map" id="4" onclick="showMap()">Map</a></li>
+					<li><a href="#popupDialog" data-rel="popup" type="reset" data-position-to="window" data-transition="pop">Reset</a></li>
+				</ul>
+				</div>
 			</div>
 			<div data-role="content" id="content">
-				
-				<div id="totals">
-					<h2>Totals</h2>
-					<p>Logs: <span id="totalNum"></span></p>
-					<p>Miles driven: <span id="totalMiles"></span></p>
-					<!-- <p>Cost of gas: $<span id="totalCost"></span></p> -->
-					<!-- <p>Gallons filled: <span id="totalGallons"></span></p> -->
-				</div>
-				<div id="averages">
-					<h2>Averages</h2>
-					<h3>All Time</h3>
-					<p>Miles per Gallon: <span id="mpg"></span></p>
-					<p>Cost per gallon: $<span id="avgCost"></span></p>
-					<!-- <p>Gallons filled: <span id="avgGallons"></span></p> -->
-					<p>Miles before filling up: <span id="avgMiles"></span></p>
-					<h3>Last Fill</h3>
-					<p>Miles per Gallon: <span id="last"></span></p>
+
+				<div id="items">
+					<div id="totals">
+						<h2>Totals</h2>
+						<p>Logs: <span id="totalNum"></span></p>
+						<p>Miles driven: <span id="totalMiles"></span></p>
+						
+					</div>
+
+					<div id="averages" display="none">
+						<h2>Averages</h2>
+						<p>Miles per Gallon: <span id="mpg"></span></p>
+						<p>Cost per gallon: $<span id="avgCost"></span></p>
+						<p>Gallons filled: <span id="avgGallons"></span></p>
+						<p>Miles driven before filling up: <span id="avgMiles"></span></p>
+						
+					</div>
+
+					<div id="history">
+						<h3>Last Fill</h3>
+						<p>Miles per Gallon: <span id="last"></span></p>
+					</div>
+
+					<div id="map">
+						<h2>Coming soon!</h2>
+					</div>
+
+					
+					
+					<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
+	        			<div data-role="header" data-theme="a">
+							<h1>Reset Data?</h1>
+						</div>
+						<div role="main" class="ui-content">
+							<h3 class="ui-title">Are you sure you want to reset all data?</h3>
+							<p>This action cannot be undone.</p>
+							<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Cancel</a>
+							<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow" onclick="reset()">Reset</a>
+						</div>
+					</div>
+
 				</div>
 
 				<div id="info">
@@ -128,9 +162,7 @@
 						<h3>You haven't logged any information yet so we can't give you statistics!</h3>
 					</figure>
 				</div>
-				<div id="resetbutton">
-					<input type="reset" value="Reset" data-theme="b" onclick="reset()" />
-				</div>
+
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
 				<div data-role="navbar">
@@ -142,5 +174,6 @@
 				</div><!-- /navbar -->
 			</div>
 		</div>
+
 	</body>
 </html>
