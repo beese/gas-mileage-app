@@ -10,7 +10,9 @@
 		<script src="script.js"></script> <!-- we have to create this file-->
 		<style>
 			.back {
-  				background: linear-gradient(#77dcf2, #a0e7db, #c9ead2, #FFFFFF);
+  				/*background: linear-gradient(#77dcf2, #a0e7db, #c9ead2, #FFFFFF);*/
+  				background: url("highway.jpg") repeat center center;
+  				/*background-color: rgba(255, 255, 255, .7);*/
 			}
 			#logo {
 				position: center;
@@ -41,6 +43,10 @@
 
 			.topimg p {
 				font-size: 50%;
+			}
+
+			#content {
+				background-color: rgba(255, 255, 255, .7);
 			}
 		</style>
 	</head>
@@ -73,7 +79,7 @@
 			<div data-role="header" data-theme="b">
 				<h1>Fill Up</h1>
 			</div>
-			<div data-role="content">
+			<div data-role="content" id = "content">
 				<label for="miles">Miles Traveled:</label>
 				<input type="text" name="name" id="miles" value="" data-mini="true"/>
 				<label for="gallons">Gallons of Gas:</label>
@@ -96,7 +102,7 @@
 			<div data-role="header" data-theme="b">
 				<h1>Statistics</h1>
 			</div>
-			<div data-role="content" id="#content">
+			<div data-role="content" id="content">
 				
 				<div id="totals">
 					<h2>Totals</h2>
