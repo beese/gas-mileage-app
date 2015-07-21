@@ -1,4 +1,6 @@
 // TODO: why isn't the active button working on my stats page?
+// before you couldn't click out of the warning but now you can
+// sometimes it randomly glitches?
 
 if(typeof(Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.

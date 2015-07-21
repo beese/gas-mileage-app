@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="jquery.mobile-1.2.0.css" />
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
 		<script src="script.js"></script> <!-- we have to create this file-->
 		<style>
 			.back {
@@ -27,7 +28,28 @@
 			    max-width: 250px; /*resolution of the img*/
 			    width: 100%;
 			    margin: 0;
+			    padding: 0;
 			    /*margin: 3em auto;*/
+			}
+
+			.topimg h3 {
+				margin: 0;
+			    padding: 0;
+			}
+
+			#yay {
+				font-size: 75%;
+				text-align: center;
+			}
+
+			#me {
+				font-size: 110%;
+				text-align: center;
+			}
+
+			.topimg p {
+				font-size: 70%;
+				text-align: center;
 			}
 		</style>
 	
@@ -41,8 +63,13 @@
 			<div data-role="content" id = "content">
 				<figure class="topimg">
 					<img src="logo.png" id="logo" alt="logo">
-					<h2>Welcome to On the Road!</h2>
-					<h3>You can use On the Road to track your gas mileage and see your statistics on driving/gas!</h3>
+					<ul data-role="listview" data-inset="true">
+				    	<li id="me">your go to app for quick and easy gas mileage/car statistics</li>
+					</ul>
+					<ul data-role="listview" data-inset="true">
+				    	<li id="yay">You can use On the Road to track your gas mileage and see your statistics on driving/gas, such as average cost per gallon, average miles per gallon and more!  To get started, just click on Fill Up!</li>
+					</ul>
+
 					<p>Created by <a href="http://www.kristinbeese.com">Kristin Beese</a></p>
 				</figure>
 				
@@ -63,11 +90,11 @@
 				<h1>Fill Up</h1>
 			</div>
 			<div data-role="content" id = "content">
-				<label for="miles">Miles Traveled:</label>
+			    <label for="miles"><b>Miles Traveled:</b></label>
 				<input type="text" name="name" id="miles" value="" data-mini="true"/>
-				<label for="gallons">Gallons of Gas:</label>
+				<label for="gallons"><b>Gallons of Gas:</b></label>
 				<input type="text" name="name" id="gallons" value="" data-mini="true"  />
-				<label for="cost">Gas Cost:</label>
+				<label for="cost"><b>Gas Cost:</b></label>
 				<input type="text" name="name" id="cost" value="" data-mini="true" placeholder="e.g. 25.60" />
 				<input type="submit" id = "submit" value="Submit"/>
 			</div>
@@ -90,7 +117,7 @@
 					<li><a href="#totals" id="2" onclick="showTotal()">Totals</a></li>
 					<li><a href="#history" id="3" onclick="showLog()">Log</a></li>
 					<li><a href="#map" id="4" onclick="showMap()">Map</a></li>
-					<li><a href="#popupDialog" data-rel="popup" type="reset" data-position-to="window" data-transition="pop">Reset</a></li>
+					<li><a href="#popupDialog" data-rel="popup" type="reset" data-position-to="window" data-transition="pop" >Reset</a></li>
 				</ul>
 				</div>
 			</div>
@@ -122,6 +149,8 @@
 					    	<li><a href="#">08/04/15</a></li>
 					    	<li>Miles per Gallon: <span id="last"></span></li>
 					    </ul>
+
+
 					</div>
 
 					<div id="map">
@@ -133,7 +162,7 @@
 
 					
 					
-					<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-dismissible="false" style="max-width:400px;">
+					<div data-role="popup" id="popupDialog" data-dismissible="false" style="max-width:400px;">
 	        			<div data-role="header">
 							<h1>Reset Data?</h1>
 						</div>
@@ -149,8 +178,10 @@
 
 				<div id="info">
 					<figure class="topimg">
-						<h2>Oops!</h2> 
-						<h3>You haven't logged any information yet so we can't give you statistics!</h3>
+						<ul data-role="listview" data-inset="true">
+					    	<li data-role="list-divider">Oops!</li>
+					    	<li>You haven't logged any information yet so we can't give you statistics!</li>
+					    </ul>
 					</figure>
 				</div>
 
