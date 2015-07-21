@@ -5,19 +5,15 @@
 		<title>My Page</title> 
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
-		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<link rel="stylesheet" href="jquery.mobile-1.2.0.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 		<script src="script.js"></script> <!-- we have to create this file-->
 		<style>
 			.back {
   				/*background: linear-gradient(#77dcf2, #a0e7db, #c9ead2, #FFFFFF);*/
-  				background: url("highway.jpg") repeat center center;
+  				background: url("highwayt.jpg") repeat center center;
   				/*background-color: rgba(255, 255, 255, .7);*/
-			}
-			#logo {
-				position: center;
-				width: 50%;
 			}
 			.topimg {
 			    text-align: center;
@@ -33,27 +29,13 @@
 			    margin: 0;
 			    /*margin: 3em auto;*/
 			}
-
-			.topimg h2 {
-				font-size: 120%;
-			}
-
-			.topimg h3 {
-				font-size: 90%;
-			}
-
-			.topimg p {
-				font-size: 50%;
-			}
-
-			#content {
-				background-color: rgba(255, 255, 255, .6);
-			}
 		</style>
+	
 	</head>
+
 	<body>
 		<div data-role="page" id="home" class="back">
-			<div data-role="header" data-theme="b">
+			<div data-role="header">
 				<h1>Home</h1>
 			</div><!-- /header -->
 			<div data-role="content" id = "content">
@@ -66,7 +48,7 @@
 				
 				<!--we put what we want the user to see here-->
 			</div><!-- /content -->
-			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
+			<div data-role="footer" data-id="foo1" data-position="fixed">
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#home" class="ui-btn-active ui-state-persist">Home</a></li>
@@ -77,7 +59,7 @@
 			</div><!-- /footer -->
 		</div><!-- /page -->
 		<div data-role="page" id="enterinfo" class="back">
-			<div data-role="header" data-theme="b">
+			<div data-role="header" >
 				<h1>Fill Up</h1>
 			</div>
 			<div data-role="content" id = "content">
@@ -87,9 +69,9 @@
 				<input type="text" name="name" id="gallons" value="" data-mini="true"  />
 				<label for="cost">Gas Cost:</label>
 				<input type="text" name="name" id="cost" value="" data-mini="true" placeholder="e.g. 25.60" />
-				<input type="submit" id = "submit" value="Submit" data-theme="b"/>
+				<input type="submit" id = "submit" value="Submit"/>
 			</div>
-			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
+			<div data-role="footer" data-id="foo1" data-position="fixed">
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#home">Home</a></li>
@@ -100,7 +82,7 @@
 			</div>
 		</div>
 		<div data-role="page" id="stats" class="back">
-			<div data-role="header" data-theme="b">
+			<div data-role="header">
 				<h1>Statistics</h1>
 				<div data-role="navbar" id="infobar">
 				<ul>
@@ -116,41 +98,50 @@
 
 				<div id="items">
 					<div id="totals">
-						<h2>Totals</h2>
-						<p>Logs: <span id="totalNum"></span></p>
-						<p>Miles driven: <span id="totalMiles"></span></p>
-						
+						<ul data-role="listview" data-inset="true">
+					    	<li data-role="list-divider">Totals</li>
+					    	<li>Logs: <span id="totalNum"></span></li>
+					    	<li>Miles driven: <span id="totalMiles"></span></li>
+					    </ul>
 					</div>
 
 					<div id="averages" display="none">
-						<h2>Averages</h2>
-						<p>Miles per Gallon: <span id="mpg"></span></p>
-						<p>Cost per gallon: $<span id="avgCost"></span></p>
-						<p>Gallons filled: <span id="avgGallons"></span></p>
-						<p>Miles driven before filling up: <span id="avgMiles"></span></p>
+						<ul data-role="listview" data-inset="true">
+					    	<li data-role="list-divider">Averages</li>
+					    	<li>Miles per Gallon: <span id="mpg"></span></li>
+					    	<li>Cost per gallon: $<span id="avgCost"></span></li>
+					    	<li>Gallons filled: <span id="avgGallons"></span></li>
+					    	<li>Miles driven before filling up: <span id="avgMiles"></span></li>
+					    </ul>
 						
 					</div>
 
 					<div id="history">
-						<h3>Last Fill</h3>
-						<p>Miles per Gallon: <span id="last"></span></p>
+						<ul data-role="listview" data-inset="true">
+					    	<li data-role="list-divider">History</li>
+					    	<li><a href="#">08/04/15</a></li>
+					    	<li>Miles per Gallon: <span id="last"></span></li>
+					    </ul>
 					</div>
 
 					<div id="map">
 						<h2>Coming soon!</h2>
+						<div id="map">
+							
+						</div>
 					</div>
 
 					
 					
-					<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-theme="b" data-dismissible="false" style="max-width:400px;">
-	        			<div data-role="header" data-theme="a">
+					<div data-role="popup" id="popupDialog" data-overlay-theme="b" data-dismissible="false" style="max-width:400px;">
+	        			<div data-role="header">
 							<h1>Reset Data?</h1>
 						</div>
 						<div role="main" class="ui-content">
 							<h3 class="ui-title">Are you sure you want to reset all data?</h3>
 							<p>This action cannot be undone.</p>
-							<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Cancel</a>
-							<a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" data-transition="flow" onclick="reset()">Reset</a>
+							<a href="#" data-role="button" data-rel="back">Cancel</a>
+							<a href="#" data-role="button" data-rel="back" data-transition="flow" onclick="reset()">Reset</a>
 						</div>
 					</div>
 
@@ -164,7 +155,7 @@
 				</div>
 
 			</div>
-			<div data-role="footer" data-id="foo1" data-position="fixed" data-theme="b">
+			<div data-role="footer" data-id="foo1" data-position="fixed">
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#home">Home</a></li>

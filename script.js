@@ -1,3 +1,5 @@
+// TODO: why isn't the active button working on my stats page?
+
 if(typeof(Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.
 
