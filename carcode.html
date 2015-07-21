@@ -51,6 +51,8 @@
 				font-size: 70%;
 				text-align: center;
 			}
+
+			
 		</style>
 	
 	</head>
@@ -90,12 +92,12 @@
 				<h1>Fill Up</h1>
 			</div>
 			<div data-role="content" id = "content">
-			    <label for="miles"><b>Miles Traveled:</b></label>
-				<input type="text" name="name" id="miles" value="" data-mini="true"/>
-				<label for="gallons"><b>Gallons of Gas:</b></label>
-				<input type="text" name="name" id="gallons" value="" data-mini="true"  />
-				<label for="cost"><b>Gas Cost:</b></label>
-				<input type="text" name="name" id="cost" value="" data-mini="true" placeholder="e.g. 25.60" />
+				<ul data-role="listview" data-inset="true">
+			    	<li data-role="list-divider">Enter Info</li>
+			    	<li><label for="miles"><b>Miles Traveled:</b></label><input type="text" name="name" id="miles" value="" data-mini="true" placeholder="e.g. 287.5"/></li>
+			    	<li><label for="gallons"><b>Gallons of Gas:</b></label><input type="text" name="name" id="gallons" value="" data-mini="true" placeholder="e.g. 9.5" /></li>
+			    	<li><label for="cost"><b>Gas Cost:</b></label><input type="text" name="name" id="cost" value="" data-mini="true" placeholder="e.g. 25.60" /></li>
+			    </ul>
 				<input type="submit" id = "submit" value="Submit"/>
 			</div>
 			<div data-role="footer" data-id="foo1" data-position="fixed">
