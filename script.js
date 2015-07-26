@@ -2,6 +2,9 @@
 // before you couldn't click out of the warning but now you can
 // sometimes it randomly glitches?
 
+
+var allTrips = [];
+
 if(typeof(Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.
 
@@ -21,6 +24,11 @@ if(typeof(Storage) !== "undefined") {
 		localStorage.setItem("cost", zero);
 		localStorage.setItem("lastmiles", zero);
 		localStorage.setItem("lastgallons", zero);
+		localStorage["log"] = [];
+
+		// how to remove html?
+
+		$("#listlog li:not([data-role=list-divider])").remove();
 
 		invisible();
 
@@ -38,8 +46,8 @@ if(typeof(Storage) !== "undefined") {
 		document.getElementById("history").style.display = "none";
 		document.getElementById("history").style.visibility = "hidden";
 
-		document.getElementById("map").style.display = "none";
-		document.getElementById("map").style.visibility = "hidden";
+		// document.getElementById("map").style.display = "none";
+		// document.getElementById("map").style.visibility = "hidden";
 
 		$("#1").removeClass("ui-btn-active ui-state-persist");
 		$("#2").removeClass("ui-btn-active ui-state-persist");
@@ -48,34 +56,67 @@ if(typeof(Storage) !== "undefined") {
     }
 
     var showAvg = function(){
-
     	invisible();
     	document.getElementById("averages").style.display = "unset";
 		document.getElementById("averages").style.visibility = "visible";
-		$("#1").addClass("ui-btn-active ui-state-persist");
 
-
+		setTimeout(function () {
+			$("#1").addClass("ui-btn-active ui-state-persist");
+		}, 0);
     }
 
     var showTotal = function() {
     	invisible();
     	document.getElementById("totals").style.display = "unset";
 		document.getElementById("totals").style.visibility = "visible";
-		$("#2").addClass("ui-btn-active ui-state-persist");
+
+		setTimeout(function () {
+			$("#2").addClass("ui-btn-active ui-state-persist");			
+		}, 0);
     }
 
     var showLog = function() {
     	invisible();
     	document.getElementById("history").style.display = "unset";
 		document.getElementById("history").style.visibility = "visible";
-		$("#3").addClass("ui-btn-active ui-state-persist");
+		setTimeout(function () {
+			$("#3").addClass("ui-btn-active ui-state-persist");
+		}, 0);
     }
 
-    var showMap = function() {
-    	invisible();
-    	document.getElementById("map").style.display = "unset";
-		document.getElementById("map").style.visibility = "visible";
-		$("#4").addClass("ui-btn-active ui-state-persist");
+  //   var showMap = function() {
+  //   	invisible();
+  //   	document.getElementById("map").style.display = "unset";
+		// document.getElementById("map").style.visibility = "visible";
+		// setTimeout(function () {
+		// 	$("#4").addClass("ui-btn-active ui-state-persist");
+		// }, 0);
+  //   }
+
+    var getLog = function() {
+    	// updates the log
+
+    	var obj = JSON.parse(localStorage["log"]);
+
+    	for(i = 0; i < obj.length; i++) {
+    		var $link = $("<a></a>").attr("href", "#").text(obj[i].date).click((function(item){
+    			return function() {
+    			// what happens when someone clicks this one
+
+	    			$("#heading").text(obj[item].date);
+	    			$("#milesDiv").text(obj[item].miles);
+	    			$("#gallonsDiv").text(obj[item].gallons);
+	    			$("#costDiv").text(obj[item].cost);
+	    			$("#mpgDiv").text(obj[item].mpg);
+	    			$("#cpgDiv").text(obj[item].cpg);
+	    			$("#popupInfo").popup("open");
+
+    			}
+    		})(i));
+    		var li = $("<li></li>").append($link);
+    		$("#listlog").append(li);
+    	};
+    	$("#listlog").listview("refresh");
     }
 
 	var refresh = function() {
@@ -118,6 +159,8 @@ if(typeof(Storage) !== "undefined") {
 			// document.getElementById("totals").style.visibility = "visible";
 			
 			calculate();
+			$("#listlog li:not([data-role=list-divider])").remove();
+			getLog();
 
 			// document.getElementById("averages").style.display = "unset";
 			// document.getElementById("averages").style.visibility = "visible";
@@ -125,6 +168,10 @@ if(typeof(Storage) !== "undefined") {
 			document.getElementById("infobar").style.visibility = "visible";		
 		}
     };
+
+    var popup = function() {
+    	$("#popupDialog").popup("open");
+    }
 
     var calculate = function() {
     	//calculate average miles driven
@@ -141,22 +188,44 @@ if(typeof(Storage) !== "undefined") {
     	var avgMPG = Number(localStorage.getItem("miles")) / Number(localStorage.getItem("gallons"));
     	document.getElementById("mpg").innerHTML = parseFloat(avgMPG).toFixed(2);
 
-    	var lastf = Number(localStorage.getItem("lastmiles")) / Number(localStorage.getItem("lastgallons"));
-    	document.getElementById("last").innerHTML = parseFloat(lastf.toFixed(2));
 
 
     };
 
-    $(document).ready(function(){
+    // $(document).ready(function(){
 
-    	refresh();
-
+    $('#stats').bind('pageinit', function() {
+		refresh();
     	invisible();
-    	
-		$("#submit").click(function(){
+    });
+
+	$('#enterinfo').bind('pageinit', function() {
+    	$("#submit").click(function(){
 			var miles = $("#miles").val();
 			var gallons = $("#gallons").val();
 			var cost = $("#cost").val();
+
+			var lastmpg = parseFloat((Number(miles) / Number(gallons)).toFixed(2));
+			var costpg = parseFloat((Number(cost) / Number(gallons)).toFixed(2));
+
+    		var fulldate = moment().format("MM/DD/YY h:mm a");
+
+
+    		if(localStorage["log"] !== "") {
+				allTrips = JSON.parse(localStorage["log"]);
+    		}
+    		
+
+			allTrips.push({
+				"miles" : miles,
+				"gallons" : gallons,
+				"cost" : cost,
+				"mpg" : lastmpg,
+				"cpg" : costpg,
+				"date" : fulldate
+			});
+
+			localStorage["log"] = JSON.stringify(allTrips);
 
 			localStorage.setItem("lastmiles", miles);
 			localStorage.setItem("lastgallons", gallons);
@@ -177,16 +246,23 @@ if(typeof(Storage) !== "undefined") {
 			tCost = tCost + Number(cost);
 			localStorage.setItem("cost", tCost); 
 			
-			refresh();
+			
 			
 			document.getElementById("miles").value = "";
 			document.getElementById("gallons").value = "";
 			document.getElementById("cost").value = "";
 			
 			window.location.href="#stats";
+
+			setTimeout(function () {
+				refresh();
+			}, 0);
+
+			
 			showAvg();
 		});
 	});
+	// });
 
 	// Store
 	
