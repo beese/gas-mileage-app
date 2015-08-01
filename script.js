@@ -124,6 +124,9 @@ if(typeof(Storage) !== "undefined") {
 
 		if(Number(localStorage.getItem("total")) === 0) {
 
+			document.getElementById("new").style.visibility = "unset";
+			document.getElementById("new").style.visibility = "visible";
+
 			//showing the error message
 			document.getElementById("info").style.display = "unset";
 			document.getElementById("info").style.visibility = "visible";
@@ -150,6 +153,9 @@ if(typeof(Storage) !== "undefined") {
 			//document.getElementById("totalGallons").innerHTML=localStorage.getItem("gallons");
 			//document.getElementById("totalCost").innerHTML=localStorage.getItem("cost");
 			
+			document.getElementById("new").style.display = "none";
+			document.getElementById("new").style.visibility = "hidden";
+
 			//hiding error message
 			document.getElementById("info").style.display = "none";
 			document.getElementById("info").style.visibility = "hidden";

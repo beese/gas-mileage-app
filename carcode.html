@@ -4,11 +4,15 @@
 		<title>My Page</title> 
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<link rel="stylesheet" href="jquery.mobile-1.2.0.css" />
 		<script src="jquery-1.8.2.min.js"></script>
+		<script>
+            $(document).bind("mobileinit", function () {
+                $.mobile.defaultPageTransition = 'none';
+            });
+        </script>
 		<script src="moment.min.js"></script>
 		<script src="jquery.mobile-1.2.0.min.js"></script>
-
+		<link rel="stylesheet" href="jquery.mobile-1.2.0.css" />
 		<style>
 			.back {
   				/*background: linear-gradient(#77dcf2, #a0e7db, #c9ead2, #FFFFFF);*/
@@ -80,9 +84,14 @@
 			</div><!-- /header -->
 			<div data-role="content" id = "content">
 				<figure class="topimg">
-					<img src="logo.png" id="logo" alt="logo">
+					<img src="assets/weblogo.png" id="logo" alt="logo">
 					<ul data-role="listview" data-inset="true">
-				    	<li class="white"><span id="me">your go to app for quick and easy gas mileage/car statistics </span> <br/> <span id="yay">Use On the Road to track your gas mileage and see your statistics on driving/gas, such as average cost per gallon, average miles per gallon and more!  To get started, just click Fill Up!</span></li>
+				    	<li class="white"><span id="me">your go to app for quick and easy gas mileage/car statistics </span> <br/> <span id="yay">Use On the Road to track your gas mileage and see your statistics on driving/gas, such as average cost per gallon, average miles per gallon and more!</span></li>
+				    	<li class="white" id="new"><span id="me">how to get started:</span> <br/> <span id="yay">
+				    		1. the first time you fill up after downloading this app, set your trip odometer to 0<br/>
+				    		2. when you are ready to fill up with gas again, go to the fill up page and enter in your stats<br/>
+				    		3. each time after you fill up set your trip odometer back to 0
+				    	</span></li>
 					</ul>
 
 					<p>Created by <a href="http://www.kristinbeese.com">Kristin Beese</a></p>
